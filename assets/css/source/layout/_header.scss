@@ -1,0 +1,50 @@
+@use "variables"as var;
+
+
+header {
+  position: fixed;
+  width: 100%;
+  height: 70px;
+  z-index: 99;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  background: var.$white-color;
+  border-bottom: 1px solid #E5E7EB;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.1);
+
+  .header-right {
+    .nav-ul {
+      gap:20px;
+      flex-direction:row;
+
+      .navBtn1 {
+        .new-ppt {
+        padding: 8px 15px;
+        background: var.$cta-color;
+        border-radius: 8px;
+        color: var.$white-color;
+        font-size: 15px;
+        line-height: 1;
+        
+        }
+
+        .setGap {
+          margin-right: 6px;
+        }
+      }
+
+      .navBtn2 {
+        .new-ppt {            
+          color: #374151;  
+          }
+
+        .setGap1 {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}
+/*----header end ----*/
