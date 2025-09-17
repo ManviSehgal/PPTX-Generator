@@ -11882,12 +11882,19 @@ header .header-right .nav-ul .navBtn2 .setGap1 {
 
 .process-bar-next-btn {
   border-top: 1px solid #E5E7EB;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }
 .process-bar-next-btn .btn1 {
   padding: 7px 16px;
   color: #ffffff;
   background: #C5281C;
   border-radius: 8px;
+  margin-top: 33px;
 }
 
 footer {
@@ -11917,16 +11924,18 @@ footer .footer-content .company-footer-logo {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  gap: 10px;
+}
+footer .footer-content .company-footer-logo a {
+  padding-top: 0;
+  margin-right: 0;
 }
 footer .footer-content .company-footer-logo p {
   color: #6B7280;
   font-family: "Poppins";
   font-weight: 400;
   font-size: 13px;
+  margin-bottom: 0;
   line-height: 1.3;
 }
 footer .footer-content .navbar-nav {
