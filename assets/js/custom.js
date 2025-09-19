@@ -11,10 +11,24 @@
       document.querySelectorAll(".process-content").forEach(el => el.classList.add("d-none"));
       document.getElementById(`step-${step}`).classList.remove("d-none");
 
-      // Update active step circles
+      // Update active step circles: only current step gets 'active'
       document.querySelectorAll(".step").forEach((el, index) => {
-        el.classList.toggle("active", index < step);
+        if (index === step - 1) {
+          el.classList.add("active");
+        } else {
+          el.classList.remove("active");
+        }
       });
+
+      // Hide/show process-bar-next-btn (navigation buttons)
+      var navBar = document.querySelector('.process-bar-next-btn');
+      if (navBar) {
+        if (step === totalSteps) {
+          navBar.style.display = 'none';
+        } else {
+          navBar.style.display = '';
+        }
+      }
 
       // Hide Previous button in Step 1
       if (step === 1) {
@@ -23,7 +37,7 @@
         prevBtn.classList.add("visible");
       }
       // Change Next button text on last step
-        nextLabel.innerHTML = step === totalSteps ? "Finish" : "Continue";
+        nextLabel.innerHTML = step === totalSteps ? "Continue" : "Continue";
     }
 
     document.getElementById("nextBtn").addEventListener("click", () => {
@@ -45,7 +59,11 @@
     // Initialize
     showStep(currentStep);
 
-
+    document.querySelectorAll(".pre-next-tab-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
 
     // uploaded pptx
 
@@ -173,3 +191,42 @@
     //   window.addEventListener('drop', e => e.preventDefault());
 
     // })();
+
+
+
+
+
+    // First color picker and its associated text input
+    const colorPicker1 = document.getElementById('colorPicker1');
+    const colorCode1 = document.getElementById('colorCode1');
+
+    // Event listener for the first color picker
+    colorPicker1.addEventListener('input', function () {
+      colorCode1.value = colorPicker1.value;  // Sync color code with color picker
+    });
+
+    // Event listener for the first text input (hex code)
+    colorCode1.addEventListener('input', function () {
+      if(/^#[0-9A-F]{6}$/i.test(colorCode1.value)) {
+        colorPicker1.value = colorCode1.value;
+      }
+    });
+
+    // Second color picker and its associated text input
+    const colorPicker2 = document.getElementById('colorPicker2');
+    const colorCode2 = document.getElementById('colorCode2');
+
+    // Event listener for the second color picker
+    colorPicker2.addEventListener('input', function () {
+      colorCode2.value = colorPicker2.value;  // Sync color code with color picker
+    });
+
+    // Event listener for the second text input (hex code)
+    colorCode2.addEventListener('input', function () {
+      if(/^#[0-9A-F]{6}$/i.test(colorCode2.value)) {
+        colorPicker2.value = colorCode2.value;
+      }
+    });
+
+
+

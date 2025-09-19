@@ -13,14 +13,15 @@
     <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon" />
     <!-- css-->
     <link href="assets/css/style.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <link rel="stylesheet" href="assets/css/all.min.css">
 
     <!-- Font awesome link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="https://kit.fontawesome.com/0901bfe3aa.js" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/fe073c3ad3.js" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/c6fd3d7ec2.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.7.1/dist/jszip.min.js"></script>
+
 
 </head>
 
@@ -90,6 +91,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-10">
                     <div class="process-section">
+                        <!-- Step 1 start -->
                         <div class="process-content" id="step-1">
                             <div class="process-title-section">
                                 <h3 class="main-title">Seleziona Cliente e Progetto</h3>
@@ -156,16 +158,19 @@
                                                 <span class="tick">✔</span>
                                             </label>
                                         </div>
-                                    </div>                                   
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <!-- Step 1 end -->
+
+                        <!-- Step 2 start -->
                         <div class="process-content d-none" id="step-2">
                             <div class="process-title-section">
                                 <h3 class="main-title">Carica File di Input</h3>
                                 <p class="mb-0">Carica il file di input e verifica la mappatura dei contenuti</p>
                             </div>
-                            <div class="process-selected-item process-selected-item1">
+                            <div class="process-selected-item process-selected-item1 pptx-uploaded">
                                 <div class="uploaded-icon">
                                     <i class="fa-solid fa-cloud-arrow-up"></i>
                                 </div>
@@ -174,23 +179,28 @@
                                     <p class="mb-0">oppure clicca per sfogliare e selezionare un file</p>
                                 </div>
                                 <div class="uploaded-btn">
-                                    <button id="actionBtn" class="btn all-btns">Scegli File</button>
+                                    <button id="actionBtn" class="btn all-btns" onclick="handleFile()">Scegli
+                                        File</button>
                                 </div>
                                 <p class="info-p">Formato supportato: PPTX</p>
+
+                                <input type="file" id="pptxFile" accept=".pptx" class="form-control mb-2"
+                                    style="display:none;">
                             </div>
 
                             <div class="uploaded-data-table">
                                 <h6 class="mb-4">Mappatura dei contenuti</h6>
 
                                 <div class="table-responsive">
-                                    <table class="table table-bordered">
+                                    <table class="table table-bordered" id="slidesTable" style="display:none;">
                                         <thead>
                                             <tr>
                                                 <th>File Caricato</th>
                                                 <th>Tipologia di Contenuto</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody></tbody>
+                                        <!-- <tbody>
                                             <tr>
                                                 <td>Pagina 1</td>
                                                 <td>Trends</td>
@@ -235,19 +245,217 @@
                                                 <td>Pagina 10</td>
                                                 <td>Breakdowns</td>
                                             </tr>
-                                        </tbody>
+                                        </tbody> -->
                                     </table>
                                 </div>
 
                             </div>
                         </div>
+                        <!-- Step 2 end -->
 
+                        <!-- Step 3 start -->
+                        <div class="process-content d-none" id="step-3">
+                            <div class="process-title-section">
+                                <h3 class="main-title">Impostazioni Output</h3>
+                                <p class="mb-0">Configura l'aspetto del progetto e le preferenze di output</p>
+                            </div>
+
+                            <div class="img-content-section">
+                                <div class="upload-img-section">
+                                    <h5>Aspetto</h5>
+                                    <div class="add-logo add-company-items">
+                                        <div class="img-section" onclick="document.getElementById('logoInput').click()">
+                                            <div class="add-img-content">
+                                                <h6 class="img-title">Logo</h6>
+                                                <div class="process-selected-item process-selected-item1">
+                                                    <div class="uploaded-icon">
+                                                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                                                    </div>
+                                                    <div class="uploaded-content">
+                                                        <p class="mb-0">Clicca per caricare il logo (512px x 512px)</p>
+                                                    </div>
+                                                    <p class="info-p">PNG, JPG fino a 5MB</p>
+                                                    <input type="file" id="logoInput" accept="image/png, image/jpeg"
+                                                        onchange="validateImage(this, 'logoPreview', 512, 512, 5)">
+                                                    <img id="logoPreview" class="upload-preview" />
+
+                                                </div>
+                                            </div>
+                                            <div class="color-picker">
+                                                <label for="colorPicker1" class="img-title">Colore Primario:</label>
+                                                <div class="color-picker-input">
+                                                    <input type="color" id="colorPicker1" value="#C5281C">
+                                                    <!-- Input for hexadecimal color code -->
+                                                    <input type="text" id="colorCode1" value="#C5281C">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="img-section"
+                                            onclick="document.getElementById('coverInput').click()">
+                                            <div class="add-img-content">
+                                                <h6 class="img-title">Immagine di Copertina</h6>
+                                                <div class="process-selected-item process-selected-item1">
+                                                    <div class="uploaded-icon">
+                                                        <i class="fa-solid fa-image"></i>
+                                                    </div>
+                                                    <div class="uploaded-content">
+                                                        <p class="mb-0">Clicca per caricare l’immagine di copertina
+                                                            (1024px
+                                                            x 800px)</p>
+                                                    </div>
+                                                    <p class="info-p">PNG, JPG fino a 10MB</p>
+
+                                                    <input type="file" id="coverInput" accept="image/png, image/jpeg"
+                                                        onchange="validateImage(this, 'coverPreview', 1024, 800, 10)">
+                                                    <img id="coverPreview" class="upload-preview" />
+                                                </div>
+                                            </div>
+                                            <div class="color-picker">
+                                                <label for="colorPicker2">Colore Primario:</label>
+                                                <div class="color-picker-input">
+                                                    <input type="color" id="colorPicker2" value="#000000">
+                                                    <!-- Input for hexadecimal color code -->
+                                                    <input type="text" id="colorCode2" value="#000000">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="toggle-items">
+                                    <h5>Impostazioni Contenuto</h5>
+
+
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width:88%">Sezione</th>
+                                                    <th style="width:12%">Abilitato</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Introduction</td>
+                                                    <td>
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input" type="checkbox" checked>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Strengths / Opportunities for Improvement</td>
+                                                    <td>
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input" type="checkbox">
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Categories vs. Benchmarks</td>
+                                                    <td>
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input" type="checkbox" checked>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Top / Bottom questions (absolute scores)</td>
+                                                    <td>
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input" type="checkbox">
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Top / Bottom questions (vs historical benchmark)</td>
+                                                    <td>
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input" type="checkbox">
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Open-ended questions</td>
+                                                    <td>
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input" type="checkbox" checked>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Summary of overall results</td>
+                                                    <td>
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input" type="checkbox" checked>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Demographic breakdowns</td>
+                                                    <td>
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input" type="checkbox" checked>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Breakdown of categories by Demographic</td>
+                                                    <td>
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input" type="checkbox" checked>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>All Question by Categories</td>
+                                                    <td>
+                                                        <div class="form-check form-switch">
+                                                            <input class="form-check-input" type="checkbox" checked>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- Step 3 end -->
+
+                        <!-- Step 4 start -->
+                        <div class="process-content d-none" id="step-4">
+                            <div class="download-svg-img text-center">
+                                <img src="./assets/images/download-svg.svg" alt="download">
+                            </div>
+                            <div class="process-title-section">
+                                <h3 class="main-title">Fatto! La tua presentazione è pronta per il download</h3>
+                                <p class="mb-0 set-width">Grazie per aver completato la configurazione. La tua
+                                    presentazione personalizzata è stata generata con
+                                    successo ed è pronta per il download.</p>
+                            </div>
+
+                            <div class="pptx-downlaod-btn">
+                                <p>Ora puoi scaricare il tuo file PPTX utilizzando il pulsante qui sotto.
+                                </p>
+                                <div class="green-btn">
+                                    <a href="assets/sample.pptx" download class="btn all-btns btn-success" id="downloadPptxBtn">
+                                        Scarica <i class="fa-solid fa-arrow-down-to-bracket ms-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Step 4 end -->
+
+                        <!-- Prev/Next Button -->
                         <div class="process-bar-next-btn">
                             <div class="btns-option">
-                                <button class="btn btn-secondary btn2" id="prevBtn"><span> <i
+                                <button class="btn btn-secondary btn2 pre-next-tab-btn" id="prevBtn"><span> <i
                                             class="fa-solid fa-arrow-left me-2"></i><span
-                                            class="prev-label">Previous</span></button>
-                                <button class="btn btn-secondary btn1 all-btns" id="nextBtn"> <span
+                                            class="prev-label">Indietro</span></button>
+                                <button class="btn btn-secondary btn1 all-btns pre-next-tab-btn" id="nextBtn"> <span
                                         class="next-label">Continue</span><span><i
                                             class="fa-solid fa-arrow-right"></i></span></button>
                             </div>
@@ -287,13 +495,97 @@
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/popper.js"></script>
     <script src="assets/js/custom.js"></script>
+    <script>
+        // Make .pptx-uploaded clickable to open the hidden file input
+        document.addEventListener('DOMContentLoaded', function () {
+            var uploadArea = document.querySelector('.pptx-uploaded');
+            var fileInput = document.getElementById('pptxFile');
+            if (uploadArea && fileInput) {
+                uploadArea.style.cursor = 'pointer';
+                uploadArea.addEventListener('click', function (e) {
+                    // Prevent click on the button from triggering twice
+                    if (e.target.tagName.toLowerCase() !== 'button') {
+                        fileInput.click();
+                    }
+                });
+            }
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 
+    <script>
+        async function handleFile() {
+            const fileInput = document.getElementById("pptxFile");
+            if (!fileInput.files.length) {
+                alert("Please select a PPTX file");
+                return;
+            }
 
+            const file = fileInput.files[0];
+            const arrayBuffer = await file.arrayBuffer();
+
+            // Load PPTX as zip
+            const zip = await JSZip.loadAsync(arrayBuffer);
+
+            let slideIndex = 1;
+            let tbody = document.querySelector("#slidesTable tbody");
+            tbody.innerHTML = "";
+
+            // Loop through slides
+            for (let filename in zip.files) {
+                if (filename.startsWith("ppt/slides/slide")) {
+                    let content = await zip.files[filename].async("string");
+
+                    // Extract all text inside <a:t> tags
+                    let matches = [...content.matchAll(/<a:t>(.*?)<\/a:t>/g)];
+
+                    // Take the first match (assuming it is the title) or "No Title" if no text found
+                    let title = matches.length > 0 ? matches[0][1].trim() : "No Title";
+
+                    let row = `<tr>
+            <td>Page ${slideIndex}</td>
+            <td>${title}</td>
+          </tr>`;
+                    tbody.innerHTML += row;
+                    slideIndex++;
+                }
+            }
+
+            document.getElementById("slidesTable").style.display = "table";
+        }
+    </script>
+
+    <script>
+        function validateImage(input, previewId, maxW, maxH, maxSizeMB) {
+            const file = input.files[0];
+            if (!file) return;
+
+            // Check file size (between 1KB and maxSizeMB)
+            const fileSizeKB = file.size / 1024;
+            if (fileSizeKB < 1 || fileSizeKB > maxSizeMB * 1024) {
+                alert(`Invalid file size! Allowed range: 1KB to ${maxSizeMB}MB.`);
+                input.value = "";
+                return;
+            }
+
+            // Check dimensions (min 1x1, maxW x maxH)
+            const img = new Image();
+            img.onload = function () {
+                if (this.width < 1 || this.height < 1 || this.width > maxW || this.height > maxH) {
+                    alert(`Invalid dimensions! Allowed up to ${maxW}×${maxH} px.`);
+                    input.value = "";
+                } else {
+                    // Show preview
+                    const preview = document.getElementById(previewId);
+                    preview.src = URL.createObjectURL(file);
+                    preview.style.display = "block";
+                }
+            };
+            img.src = URL.createObjectURL(file);
+        }
+    </script>
 
 
 </body>
-
-
 
 </html>

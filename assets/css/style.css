@@ -11765,8 +11765,8 @@ header {
           align-items: center;
   background: #ffffff;
   border-bottom: 1px solid #E5E7EB;
-  -webkit-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.1);
-          box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.07);
+          box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.07);
 }
 header .header-right .nav-ul {
   gap: 20px;
@@ -11902,6 +11902,15 @@ header .header-right .nav-ul .navBtn2 .setGap1 {
   font-family: "poppins";
   font-weight: 700;
   margin-bottom: 3px;
+}
+.inner-section .process-section .process-content .process-title-section .set-width {
+  max-width: 830px;
+  margin: 0 auto;
+  font-size: 16px;
+  line-height: 1.5;
+  font-family: "poppins";
+  font-weight: 400;
+  color: #4B5563;
 }
 .inner-section .process-section .process-content .process-selected-item {
   display: -webkit-box;
@@ -12095,6 +12104,213 @@ header .header-right .nav-ul .navBtn2 .setGap1 {
   border-radius: 8px;
   background: transparent;
 }
+.inner-section .process-section .process-content .upload-img-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 18px;
+  padding-bottom: 50px;
+}
+.inner-section .process-section .process-content .upload-img-section h5 {
+  font-family: "Poppins";
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #111827;
+}
+.inner-section .process-section .process-content .upload-img-section .add-company-items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  gap: 33px;
+}
+.inner-section .process-section .process-content .upload-img-section .add-company-items .img-section {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 23px;
+}
+.inner-section .process-section .process-content .upload-img-section .add-company-items .img-section .add-img-content .img-title {
+  font-family: "Poppins";
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #111827;
+  margin-bottom: 12px;
+}
+.inner-section .process-section .process-content .upload-img-section .add-company-items .img-section .add-img-content .process-selected-item1 {
+  gap: 4px;
+  cursor: pointer;
+  position: relative;
+}
+.inner-section .process-section .process-content .upload-img-section .add-company-items .img-section .add-img-content .process-selected-item1 .uploaded-icon {
+  background: transparent;
+  width: auto;
+  height: auto;
+}
+.inner-section .process-section .process-content .upload-img-section .add-company-items .img-section .add-img-content .process-selected-item1 input {
+  display: none;
+}
+.inner-section .process-section .process-content .upload-img-section .add-company-items .img-section .add-img-content .process-selected-item1 .upload-preview {
+  margin-top: 10px;
+  max-width: 100%;
+  max-height: 150px;
+  display: none;
+}
+.inner-section .process-section .process-content .upload-img-section .add-company-items .img-section .add-img-content .process-selected-item1:hover {
+  border-color: #999;
+}
+.inner-section .process-section .process-content .upload-img-section .add-company-items .img-section .color-picker {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 12px;
+}
+.inner-section .process-section .process-content .upload-img-section .add-company-items .img-section .color-picker .color-picker-input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 12px;
+}
+.inner-section .process-section .process-content .upload-img-section .add-company-items .img-section .color-picker .color-picker-input input {
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  height: 42px;
+  width: 48px;
+  outline: 0;
+  padding: 0;
+}
+.inner-section .process-section .process-content .upload-img-section .add-company-items .img-section .color-picker .color-picker-input input[type=color]::-webkit-color-swatch {
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+.inner-section .process-section .process-content .upload-img-section .add-company-items .img-section .color-picker .color-picker-input input[type=color]::-moz-color-swatch {
+  border: none;
+  box-shadow: none;
+}
+.inner-section .process-section .process-content .upload-img-section .add-company-items .img-section .color-picker .color-picker-input #colorCode1,
+.inner-section .process-section .process-content .upload-img-section .add-company-items .img-section .color-picker .color-picker-input #colorCode2 {
+  padding: 9px 15px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+.inner-section .process-section .process-content .toggle-items h5 {
+  font-family: "Poppins";
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #111827;
+  margin-bottom: 18px;
+}
+.inner-section .process-section .process-content .toggle-items .table-responsive table tbody {
+  border-top: none;
+}
+.inner-section .process-section .process-content .toggle-items .table-responsive table tr {
+  vertical-align: middle;
+}
+.inner-section .process-section .process-content .toggle-items .table-responsive table tr th {
+  font-family: "Poppins";
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #374151;
+  padding: 13px 0;
+  border-color: #e5e7eb;
+}
+.inner-section .process-section .process-content .toggle-items .table-responsive table tr td {
+  font-family: "Poppins";
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #111827;
+  padding: 23px 0;
+  border-color: #e5e7eb;
+}
+.inner-section .process-section .process-content .toggle-items .table-responsive table tr td .form-switch {
+  padding: 0;
+  margin: 0;
+}
+.inner-section .process-section .process-content .toggle-items .table-responsive table tr td .form-switch .form-check-input {
+  width: 44px;
+  height: 24px;
+  background-color: #E5E7EB;
+  border: none;
+  cursor: pointer;
+  -webkit-transition: background-color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
+  position: relative;
+  background-image: none !important;
+  margin: 0;
+  padding: 0;
+}
+.inner-section .process-section .process-content .toggle-items .table-responsive table tr td .form-switch .form-check-input:not(:checked) {
+  background-color: #d6d6d6;
+}
+.inner-section .process-section .process-content .toggle-items .table-responsive table tr td .form-switch .form-check-input:checked {
+  background-color: #28a745;
+}
+.inner-section .process-section .process-content .toggle-items .table-responsive table tr td .form-switch .form-check-input:before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border-radius: 50%;
+  -webkit-transition: -webkit-transform 0.3s ease-in-out;
+  transition: -webkit-transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
+}
+.inner-section .process-section .process-content .toggle-items .table-responsive table tr td .form-switch .form-check-input:checked:before {
+  -webkit-transform: translateX(18px);
+          transform: translateX(18px);
+}
+.inner-section .process-section .process-content .toggle-items .table-responsive table tr td .form-switch .form-check-input:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  outline: none;
+}
+.inner-section .process-section .process-content .toggle-items .table-responsive table tr td .form-switch .form-check-input:active {
+  -webkit-filter: none;
+          filter: none;
+}
+.inner-section .process-section .process-content .pptx-downlaod-btn {
+  text-align: center;
+}
+.inner-section .process-section .process-content .pptx-downlaod-btn p {
+  font-family: "Poppins";
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.3;
+  color: #111827;
+  margin-bottom: 18px;
+}
+.inner-section .process-section .process-content .pptx-downlaod-btn .green-btn .all-btns.btn-success {
+  border: none;
+  background: #00AC11;
+}
 
 .process-bar-next-btn {
   border-top: 1px solid #E5E7EB;
@@ -12146,6 +12362,10 @@ header .header-right .nav-ul .navBtn2 .setGap1 {
 }
 .process-bar-next-btn .btns-option .btn2 {
   background: transparent;
+  color: #111827;
+}
+.process-bar-next-btn .btns-option .btn2 i {
+  color: #111827;
 }
 .process-bar-next-btn .btns-option #prevBtn {
   opacity: 0;
@@ -12167,6 +12387,10 @@ footer {
   z-index: 99;
   left: 0;
   bottom: 0;
+  background: #ffffff;
+  border-top: 1px solid #E5E7EB;
+  -webkit-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.07);
+          box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.07);
 }
 footer .footer-content {
   display: -webkit-box;
