@@ -20,25 +20,42 @@ header {
       flex-direction:row;
 
       .navBtn1 {
+        font-size: 15px;
+        line-height: 1.2;
         .new-ppt {
         padding: 8px 15px;
         background: var.$bg-color;
         border-radius: 8px;
         color: var.$white-color;
-        font-size: 15px;
-        line-height: 1;
         
+        &.disabled {
+                  pointer-events: none;
+                  cursor: default;
+                  color: #6B7280;
+                  background: #E5E7EB;
+          }
         }
 
         .setGap {
           margin-right: 6px;
         }
+
+        @media screen and (min-width: 1200px) and (max-width: 1720px) {
+            font-size: 14px;           
+          }
       }
 
       .navBtn2 {
-        .new-ppt {            
-          color: #374151;  
+        .new-ppt1 {            
+          color: #374151;
+          font-size: 14px;
+          line-height: 1.4;
+          font-weight: 500;
+          
+          @media screen and (min-width: 1200px) and (max-width: 1720px) {
+            font-size: 13px;           
           }
+        }
 
         .setGap1 {
           margin-right: 10px;

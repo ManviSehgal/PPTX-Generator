@@ -1,4 +1,73 @@
- let currentStep = 1;
+
+ function validateImage(input, previewId, maxW, maxH, maxSizeMB) {
+            const file = input.files[0];
+            if (!file) return;
+
+            // Check file size (between 1KB and maxSizeMB)
+            const fileSizeKB = file.size / 1024;
+            if (fileSizeKB < 1 || fileSizeKB > maxSizeMB * 1024) {
+                alert(`Invalid file size! Allowed range: 1KB to ${maxSizeMB}MB.`);
+                input.value = "";
+                return;
+            }
+
+            // Check dimensions (min 1x1, maxW x maxH)
+            const img = new Image();
+            img.onload = function () {
+                if (this.width < 1 || this.height < 1 || this.width > maxW || this.height > maxH) {
+                    alert(`Invalid dimensions! Allowed up to ${maxW}×${maxH} px.`);
+                    input.value = "";
+                } else {
+                    // Show preview
+                    const preview = document.getElementById(previewId);
+                    preview.src = URL.createObjectURL(file);
+                    preview.style.display = "block";
+                }
+            };
+            img.src = URL.createObjectURL(file);
+        }
+
+        // async function handleFile() {
+        //     const fileInput = document.getElementById("pptxFile");
+        //     if (!fileInput.files.length) {
+        //         alert("Please select a PPTX file");
+        //         return;
+        //     }
+
+        //     const file = fileInput.files[0];
+        //     const arrayBuffer = await file.arrayBuffer();
+
+        //     // Load PPTX as zip
+        //     const zip = await JSZip.loadAsync(arrayBuffer);
+
+        //     let slideIndex = 1;
+        //     let tbody = document.querySelector("#slidesTable tbody");
+        //     tbody.innerHTML = "";
+
+        //     // Loop through slides
+        //     for (let filename in zip.files) {
+        //         if (filename.startsWith("ppt/slides/slide")) {
+        //             let content = await zip.files[filename].async("string");
+
+        //             // Extract all text inside <a:t> tags
+        //             let matches = [...content.matchAll(/<a:t>(.*?)<\/a:t>/g)];
+
+        //             // Take the first match (assuming it is the title) or "No Title" if no text found
+        //             let title = matches.length > 0 ? matches[0][1].trim() : "No Title";
+
+        //             let row = `<tr>
+        //     <td>Page ${slideIndex}</td>
+        //     <td>${title}</td>
+        //   </tr>`;
+        //             tbody.innerHTML += row;
+        //             slideIndex++;
+        //         }
+        //     }
+
+        //     document.getElementById("slidesTable").style.display = "table";
+        // }
+
+let currentStep = 1;
     const totalSteps = 4;
 
 
@@ -30,6 +99,26 @@
         }
       }
 
+      // Disable/enable .new-ppt links
+      document.querySelectorAll('.new-ppt').forEach(link => {
+        if (step === totalSteps) {
+          link.classList.remove('disabled');
+          link.setAttribute('tabindex', '0');
+          link.setAttribute('aria-disabled', 'false');
+        } else {
+          link.classList.add('disabled');
+          link.setAttribute('tabindex', '-1');
+          link.setAttribute('aria-disabled', 'true');
+        }
+      });
+
+      // Disable Continue button on first step
+      if (step === 1) {
+        nextBtn.disabled = true;
+      } else {
+        nextBtn.disabled = false;
+      }
+
       // Hide Previous button in Step 1
       if (step === 1) {
         prevBtn.classList.remove("visible");
@@ -37,7 +126,7 @@
         prevBtn.classList.add("visible");
       }
       // Change Next button text on last step
-        nextLabel.innerHTML = step === totalSteps ? "Continue" : "Continue";
+      nextLabel.innerHTML = step === totalSteps ? "Continue" : "Continue";
     }
 
     document.getElementById("nextBtn").addEventListener("click", () => {
@@ -45,7 +134,7 @@
         currentStep++;
         showStep(currentStep);
       } else {
-        alert("All steps completed!");
+        // No alert on last step
       }
     });
 
@@ -56,8 +145,23 @@
       }
     });
 
+
+    // Enable Continue button on step 1 only if both client and project are selected
+    function checkStep1Selections() {
+      if (currentStep !== 1) return;
+      var client = document.querySelector('input[name="cliente"]:checked');
+      var project = document.querySelector('input[name="progetto"]:checked');
+      nextBtn.disabled = !(client && project);
+    }
+
+    // Listen for changes on step 1 radio buttons
+    document.querySelectorAll('input[name="cliente"], input[name="progetto"]').forEach(input => {
+      input.addEventListener('change', checkStep1Selections);
+    });
+
     // Initialize
     showStep(currentStep);
+    checkStep1Selections();
 
     document.querySelectorAll(".pre-next-tab-btn").forEach(btn => {
       btn.addEventListener("click", () => {
@@ -194,7 +298,7 @@
 
 
 
-
+// Color Picker
 
     // First color picker and its associated text input
     const colorPicker1 = document.getElementById('colorPicker1');
@@ -229,4 +333,44 @@
     });
 
 
+// PPTX file upload JS 
 
+  async function handleFile() {
+            const fileInput = document.getElementById("pptxFile");
+            if (!fileInput.files.length) {
+                alert("Please select a PPTX file");
+                return;
+            }
+
+            const file = fileInput.files[0];
+            const arrayBuffer = await file.arrayBuffer();
+
+            // Load PPTX as zip
+            const zip = await JSZip.loadAsync(arrayBuffer);
+
+            let slideIndex = 1;
+            let tbody = document.querySelector("#slidesTable tbody");
+            tbody.innerHTML = "";
+
+            // Loop through slides
+            for (let filename in zip.files) {
+                if (filename.startsWith("ppt/slides/slide")) {
+                    let content = await zip.files[filename].async("string");
+
+                    // Extract all text inside <a:t> tags
+                    let matches = [...content.matchAll(/<a:t>(.*?)<\/a:t>/g)];
+
+                    // Take the first match (assuming it is the title) or "No Title" if no text found
+                    let title = matches.length > 0 ? matches[0][1].trim() : "No Title";
+
+                    let row = `<tr>
+            <td>Page ${slideIndex}</td>
+            <td>${title}</td>
+          </tr>`;
+                    tbody.innerHTML += row;
+                    slideIndex++;
+                }
+            }
+
+            document.getElementById("slidesTable").style.display = "table";
+        }

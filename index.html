@@ -30,7 +30,7 @@
         <div class="container">
             <nav class="navbar navbar-light">
                 <div class="brand-logo">
-                    <a title="Fineco" class="navbar-brand" href="#">
+                    <a title="Fineco" class="navbar-brand" href="index.html">
                         <img src="assets/images/logo1.svg" alt="Generali - PPTX Generator" class="main-logo1" />
                     </a>
                 </div>
@@ -45,7 +45,7 @@
                             </a>
                         </li>
                         <li class="nav-item navBtn2">
-                            <a href="" class="new-ppt">
+                            <a href="" class="new-ppt1">
                                 <span class="setGap1">Sofia Williams</span><span><i
                                         class="fa-solid fa-right-from-bracket"></i></span>
                             </a>
@@ -107,24 +107,11 @@
                                     <div class="radio-buttons" id="cliente-options">
                                         <div class="company-name">
                                             <label>
-                                                <input type="radio" name="cliente" value="Assicurazioni Generali S.p.A."
-                                                    checked />
+                                                <input type="radio" name="cliente"
+                                                    value="Assicurazioni Generali S.p.A." />
                                                 <span>Assicurazioni Generali S.P.A.</span>
                                             </label>
                                         </div>
-                                        <!-- <div class="company-name">
-                                            <label>
-                                                <input type="radio" name="cliente" value="Cliente 2" />
-                                                <span>Cliente 2</span>
-                                            </label>
-                                        </div>
-                                        <div class="company-name">
-
-                                            <label>
-                                                <input type="radio" name="cliente" value="Cliente 3" />
-                                                <span>Cliente 3</span>
-                                            </label>
-                                        </div> -->
                                     </div>
 
                                 </div>
@@ -136,8 +123,7 @@
                                     <div class="radio-buttons" id="progetto-options">
                                         <div class="company-name">
                                             <label>
-                                                <input type="radio" name="progetto" value="Engagement Survey 2025"
-                                                    checked />
+                                                <input type="radio" name="progetto" value="Engagement Survey 2025" />
                                                 <span>Engagement Survey 2025</span>
                                                 <span class="tick">✔</span>
                                             </label>
@@ -179,8 +165,7 @@
                                     <p class="mb-0">oppure clicca per sfogliare e selezionare un file</p>
                                 </div>
                                 <div class="uploaded-btn">
-                                    <button id="actionBtn" class="btn all-btns" onclick="handleFile()">Scegli
-                                        File</button>
+                                    <button id="actionBtn" class="btn all-btns">Scegli File</button>
                                 </div>
                                 <p class="info-p">Formato supportato: PPTX</p>
 
@@ -262,23 +247,31 @@
 
                             <div class="img-content-section">
                                 <div class="upload-img-section">
-                                    <h5>Aspetto</h5>
+                                    <h5 class="mb-0">Aspetto</h5>
                                     <div class="add-logo add-company-items">
-                                        <div class="img-section" onclick="document.getElementById('logoInput').click()">
+                                        <div class="img-section">
                                             <div class="add-img-content">
                                                 <h6 class="img-title">Logo</h6>
-                                                <div class="process-selected-item process-selected-item1">
-                                                    <div class="uploaded-icon">
+                                                <div
+                                                    class="process-selected-item process-selected-item1 logo-upload-area">
+                                                    <div class="uploaded-icon" style="cursor:pointer;">
                                                         <i class="fa-solid fa-cloud-arrow-up"></i>
                                                     </div>
-                                                    <div class="uploaded-content">
+                                                    <div class="uploaded-content" style="cursor:pointer;">
                                                         <p class="mb-0">Clicca per caricare il logo (512px x 512px)</p>
                                                     </div>
-                                                    <p class="info-p">PNG, JPG fino a 5MB</p>
-                                                    <input type="file" id="logoInput" accept="image/png, image/jpeg"
-                                                        onchange="validateImage(this, 'logoPreview', 512, 512, 5)">
-                                                    <img id="logoPreview" class="upload-preview" />
-
+                                                    <p class="info-p" style="cursor:pointer;">PNG, JPG fino a 5MB</p>
+                                                    <input type="file" id="logoInput" accept="image/png, image/jpeg">
+                                                </div>
+                                                <div class="logo-preview-container" style="display:none; ">
+                                                    <div class="img-preview-option">
+                                                        <img id="logoPreview" class="upload-preview" style="display:block; max-width:150px; max-height:150px;" />
+                                                    </div>
+                                                    <div class="img-dimensions">
+                                                        <div class="logo-meta">
+                                                        </div>
+                                                       <button type="button" class="btn all-btns" id="removeLogoBtn"><span><i class="fa-regular fa-trash me-1"></i></span> Rimuovi</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="color-picker">
@@ -291,24 +284,31 @@
                                             </div>
                                         </div>
 
-                                        <div class="img-section"
-                                            onclick="document.getElementById('coverInput').click()">
+                                        <div class="img-section">
                                             <div class="add-img-content">
                                                 <h6 class="img-title">Immagine di Copertina</h6>
-                                                <div class="process-selected-item process-selected-item1">
-                                                    <div class="uploaded-icon">
+                                                <div
+                                                    class="process-selected-item process-selected-item1 cover-upload-area">
+                                                    <div class="uploaded-icon" style="cursor:pointer;">
                                                         <i class="fa-solid fa-image"></i>
                                                     </div>
-                                                    <div class="uploaded-content">
+                                                    <div class="uploaded-content" style="cursor:pointer;">
                                                         <p class="mb-0">Clicca per caricare l’immagine di copertina
-                                                            (1024px
-                                                            x 800px)</p>
+                                                            (1024px x 800px)</p>
                                                     </div>
-                                                    <p class="info-p">PNG, JPG fino a 10MB</p>
+                                                    <p class="info-p" style="cursor:pointer;">PNG, JPG fino a 10MB</p>
+                                                    <input type="file" id="coverInput" accept="image/png, image/jpeg">
+                                                </div>
 
-                                                    <input type="file" id="coverInput" accept="image/png, image/jpeg"
-                                                        onchange="validateImage(this, 'coverPreview', 1024, 800, 10)">
-                                                    <img id="coverPreview" class="upload-preview" />
+                                                <div class="cover-preview-container logo-preview-container"
+                                                    style="display:none;">
+                                                    <div class="img-preview-option">
+                                                        <img id="coverPreview" class="upload-preview" style="display:block; max-width:200px; max-height:160px;" />
+                                                    </div>
+                                                    <div class="img-dimensions">
+                                                        <div class="cover-meta"></div>
+                                                        <button type="button" class="btn all-btns" id="removeCoverBtn"><span><i class="fa-regular fa-trash me-1"></i></span> Rimuovi</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="color-picker">
@@ -441,7 +441,8 @@
                                 <p>Ora puoi scaricare il tuo file PPTX utilizzando il pulsante qui sotto.
                                 </p>
                                 <div class="green-btn">
-                                    <a href="assets/sample.pptx" download class="btn all-btns btn-success" id="downloadPptxBtn">
+                                    <a href="assets/sample.pptx" download class="btn all-btns btn-success"
+                                        id="downloadPptxBtn">
                                         Scarica <i class="fa-solid fa-arrow-down-to-bracket ms-1"></i>
                                     </a>
                                 </div>
@@ -470,11 +471,13 @@
         <div class="container">
             <div class="footer-content">
                 <div class="company-footer-logo">
-                    <a title="Fineco" class="navbar-brand" href="#">
-                        <img src="assets/images/footer-logo.svg" alt="Generali - PPTX Generator" class="main-logo1" />
-                    </a>
                     <p>
-                        © 2025 WTW. Tutti i diritti riservati. </p>
+                        <a title="WTW" class="navbar-brand" href="https://www.wtwco.com/it-it">
+                            <img src="assets/images/footer-logo.svg" alt="Generali - PPTX Generator"
+                                class="main-logo1" />
+                        </a>
+
+                        <span>© 2025 WTW. Tutti i diritti riservati.</span></p>
 
 
                 </div>
@@ -495,95 +498,153 @@
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/popper.js"></script>
     <script src="assets/js/custom.js"></script>
+
+
+
     <script>
-        // Make .pptx-uploaded clickable to open the hidden file input
+        // Logo and Cover upload preview and info logic with validation (hide/show entire upload area)
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- Logo Upload Logic ---
+            var logoInput = document.getElementById('logoInput');
+            var logoPreview = document.getElementById('logoPreview');
+            var logoPreviewContainer = document.querySelector('.logo-preview-container');
+            var logoUploadArea = logoInput ? logoInput.closest('.logo-upload-area') : null;
+            var addLogoContent = logoInput ? logoInput.closest('.add-img-content') : null;
+            var logoMeta = logoPreviewContainer ? logoPreviewContainer.querySelector('.logo-meta') : null;
+            var removeLogoBtn = document.getElementById('removeLogoBtn');
+            if (logoInput && logoPreview && logoPreviewContainer && addLogoContent && logoMeta && removeLogoBtn && logoUploadArea) {
+                // Make the entire upload area clickable (except the input itself)
+                logoUploadArea.style.cursor = 'pointer';
+                logoUploadArea.addEventListener('click', function (e) {
+                    if (e.target !== logoInput) {
+                        logoInput.click();
+                    }
+                });
+                logoInput.addEventListener('change', function () {
+                    var file = logoInput.files[0];
+                    if (!file) return;
+                    // --- Validation for logo: max 512x512px, max 5MB ---
+                    var fileSizeKB = file.size / 1024;
+                    if (fileSizeKB < 1 || fileSizeKB > 5 * 1024) {
+                        alert('Invalid file size! Allowed range: 1KB to 5MB.');
+                        logoInput.value = '';
+                        return;
+                    }
+                    var img = new Image();
+                    img.onload = function () {
+                        if (this.width < 1 || this.height < 1 || this.width > 512 || this.height > 512) {
+                            alert('Invalid dimensions! Allowed up to 512×512 px.');
+                            logoInput.value = '';
+                        } else {
+                            // Hide entire upload area, show preview UI
+                            logoUploadArea.style.display = 'none';
+                            logoPreviewContainer.style.display = 'flex';
+                            logoPreview.src = img.src;
+                            var sizeKB = Math.round(file.size / 1024);
+                            logoMeta.innerHTML =
+                                '<p style="color:#000000"> <strong>' + file.name + '</strong></p>' +
+                                '<p>misurare: ' + sizeKB + ' KB</p>' +
+                                '<p>Dimensione: ' + img.width + 'px x ' + img.height + 'px</p>';
+                        }
+                    };
+                    img.src = URL.createObjectURL(file);
+                });
+                removeLogoBtn.addEventListener('click', function () {
+                    // Reset UI
+                    logoInput.value = '';
+                    logoPreview.src = '';
+                    logoPreviewContainer.style.display = 'none';
+                    logoUploadArea.style.display = '';
+                });
+            }
+
+            // --- Cover Upload Logic ---
+            var coverInput = document.getElementById('coverInput');
+            var coverPreview = document.getElementById('coverPreview');
+            var coverPreviewContainer = document.querySelector('.cover-preview-container');
+            var coverUploadArea = coverInput ? coverInput.closest('.cover-upload-area') : null;
+            var addCoverContent = coverInput ? coverInput.closest('.add-img-content') : null;
+            var coverMeta = coverPreviewContainer ? coverPreviewContainer.querySelector('.cover-meta') : null;
+            var removeCoverBtn = document.getElementById('removeCoverBtn');
+            if (coverInput && coverPreview && coverPreviewContainer && addCoverContent && coverMeta && removeCoverBtn && coverUploadArea) {
+                // Make the entire upload area clickable (except the input itself)
+                coverUploadArea.style.cursor = 'pointer';
+                coverUploadArea.addEventListener('click', function (e) {
+                    if (e.target !== coverInput) {
+                        coverInput.click();
+                    }
+                });
+                coverInput.addEventListener('change', function () {
+                    var file = coverInput.files[0];
+                    if (!file) return;
+                    // --- Validation for cover: max 1024x800px, max 10MB ---
+                    var fileSizeKB = file.size / 1024;
+                    if (fileSizeKB < 1 || fileSizeKB > 10 * 1024) {
+                        alert('Invalid file size! Allowed range: 1KB to 10MB.');
+                        coverInput.value = '';
+                        return;
+                    }
+                    var img = new Image();
+                    img.onload = function () {
+                        if (this.width < 1 || this.height < 1 || this.width > 1024 || this.height > 800) {
+                            alert('Invalid dimensions! Allowed up to 1024×800 px.');
+                            coverInput.value = '';
+                        } else {
+                            // Hide entire upload area, show preview UI
+                            coverUploadArea.style.display = 'none';
+                            coverPreviewContainer.style.display = 'flex';
+                            coverPreview.src = img.src;
+                            var sizeKB = Math.round(file.size / 1024);
+                            coverMeta.innerHTML =
+                                '<p style="color:#000000"> <strong>' + file.name + '</strong></p>' +
+                                '<p>misurare: ' + sizeKB + ' KB</p>' +
+                                '<p>Dimensione: ' + img.width + 'px x ' + img.height + 'px</p>';
+                        }
+                    };
+                    img.src = URL.createObjectURL(file);
+                });
+                removeCoverBtn.addEventListener('click', function () {
+                    // Reset UI
+                    coverInput.value = '';
+                    coverPreview.src = '';
+                    coverPreviewContainer.style.display = 'none';
+                    coverUploadArea.style.display = '';
+                });
+            }
+        });
+    </script>
+    <script>
+        // Make .pptx-uploaded and #actionBtn clickable to open the hidden file input (only one event listener)
         document.addEventListener('DOMContentLoaded', function () {
             var uploadArea = document.querySelector('.pptx-uploaded');
             var fileInput = document.getElementById('pptxFile');
+            var actionBtn = document.getElementById('actionBtn');
             if (uploadArea && fileInput) {
                 uploadArea.style.cursor = 'pointer';
                 uploadArea.addEventListener('click', function (e) {
-                    // Prevent click on the button from triggering twice
-                    if (e.target.tagName.toLowerCase() !== 'button') {
+                    // Only trigger if not clicking the button
+                    if (e.target.id !== 'actionBtn') {
                         fileInput.click();
+                    }
+                });
+            }
+            if (actionBtn && fileInput) {
+                actionBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    fileInput.click();
+                });
+            }
+            // Auto-upload when file selected
+            if (fileInput) {
+                fileInput.addEventListener('change', function () {
+                    if (fileInput.files.length) {
+                        if (typeof handleFile === 'function') handleFile();
                     }
                 });
             }
         });
     </script>
     <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-
-    <script>
-        async function handleFile() {
-            const fileInput = document.getElementById("pptxFile");
-            if (!fileInput.files.length) {
-                alert("Please select a PPTX file");
-                return;
-            }
-
-            const file = fileInput.files[0];
-            const arrayBuffer = await file.arrayBuffer();
-
-            // Load PPTX as zip
-            const zip = await JSZip.loadAsync(arrayBuffer);
-
-            let slideIndex = 1;
-            let tbody = document.querySelector("#slidesTable tbody");
-            tbody.innerHTML = "";
-
-            // Loop through slides
-            for (let filename in zip.files) {
-                if (filename.startsWith("ppt/slides/slide")) {
-                    let content = await zip.files[filename].async("string");
-
-                    // Extract all text inside <a:t> tags
-                    let matches = [...content.matchAll(/<a:t>(.*?)<\/a:t>/g)];
-
-                    // Take the first match (assuming it is the title) or "No Title" if no text found
-                    let title = matches.length > 0 ? matches[0][1].trim() : "No Title";
-
-                    let row = `<tr>
-            <td>Page ${slideIndex}</td>
-            <td>${title}</td>
-          </tr>`;
-                    tbody.innerHTML += row;
-                    slideIndex++;
-                }
-            }
-
-            document.getElementById("slidesTable").style.display = "table";
-        }
-    </script>
-
-    <script>
-        function validateImage(input, previewId, maxW, maxH, maxSizeMB) {
-            const file = input.files[0];
-            if (!file) return;
-
-            // Check file size (between 1KB and maxSizeMB)
-            const fileSizeKB = file.size / 1024;
-            if (fileSizeKB < 1 || fileSizeKB > maxSizeMB * 1024) {
-                alert(`Invalid file size! Allowed range: 1KB to ${maxSizeMB}MB.`);
-                input.value = "";
-                return;
-            }
-
-            // Check dimensions (min 1x1, maxW x maxH)
-            const img = new Image();
-            img.onload = function () {
-                if (this.width < 1 || this.height < 1 || this.width > maxW || this.height > maxH) {
-                    alert(`Invalid dimensions! Allowed up to ${maxW}×${maxH} px.`);
-                    input.value = "";
-                } else {
-                    // Show preview
-                    const preview = document.getElementById(previewId);
-                    preview.src = URL.createObjectURL(file);
-                    preview.style.display = "block";
-                }
-            };
-            img.src = URL.createObjectURL(file);
-        }
-    </script>
 
 
 </body>
