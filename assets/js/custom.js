@@ -27,48 +27,9 @@
             img.src = URL.createObjectURL(file);
         }
 
-        // async function handleFile() {
-        //     const fileInput = document.getElementById("pptxFile");
-        //     if (!fileInput.files.length) {
-        //         alert("Please select a PPTX file");
-        //         return;
-        //     }
-
-        //     const file = fileInput.files[0];
-        //     const arrayBuffer = await file.arrayBuffer();
-
-        //     // Load PPTX as zip
-        //     const zip = await JSZip.loadAsync(arrayBuffer);
-
-        //     let slideIndex = 1;
-        //     let tbody = document.querySelector("#slidesTable tbody");
-        //     tbody.innerHTML = "";
-
-        //     // Loop through slides
-        //     for (let filename in zip.files) {
-        //         if (filename.startsWith("ppt/slides/slide")) {
-        //             let content = await zip.files[filename].async("string");
-
-        //             // Extract all text inside <a:t> tags
-        //             let matches = [...content.matchAll(/<a:t>(.*?)<\/a:t>/g)];
-
-        //             // Take the first match (assuming it is the title) or "No Title" if no text found
-        //             let title = matches.length > 0 ? matches[0][1].trim() : "No Title";
-
-        //             let row = `<tr>
-        //     <td>Page ${slideIndex}</td>
-        //     <td>${title}</td>
-        //   </tr>`;
-        //             tbody.innerHTML += row;
-        //             slideIndex++;
-        //         }
-        //     }
-
-        //     document.getElementById("slidesTable").style.display = "table";
-        // }
 
 let currentStep = 1;
-    const totalSteps = 4;
+    const totalSteps = 3;
 
 
     const prevBtn = document.getElementById("prevBtn");
@@ -169,133 +130,6 @@ let currentStep = 1;
       });
     });
 
-    // uploaded pptx
-
-    //   (function(){
-    //   const dropzone = document.getElementById('dropzone');
-    //   const fileInput = document.getElementById('fileInput');
-    //   const actionBtn = document.getElementById('actionBtn');
-    //   const fileList = document.getElementById('fileList');
-
-    //   const MAX_BYTES = 50 * 1024 * 1024; // 50 MB
-    //   let currentFile = null;
-
-    //   function isPptx(file){
-    //     const name = (file && file.name) || '';
-    //     const ext = name.split('.').pop().toLowerCase();
-    //     return ext === 'pptx' || file.type === 'application/vnd.openxmlformats-officedocument.presentationml.presentation';
-    //   }
-
-    //   function setFile(file){
-    //     if(!file) return clearFile();
-    //     if(!isPptx(file)){
-    //       alert('Please select a .pptx file');
-    //       return;
-    //     }
-    //     if(file.size > MAX_BYTES){
-    //       alert('File is too large. Max 50 MB');
-    //       return;
-    //     }
-    //     currentFile = file;
-    //     renderFile();
-    //     uploadFile();
-    //   }
-
-    //   function clearFile(){
-    //     currentFile = null;
-    //     fileList.classList.add('hidden');
-    //     fileList.innerHTML = '';
-    //   }
-
-    //   function renderFile(){
-    //     fileList.classList.remove('hidden');
-    //     const kb = Math.round(currentFile.size / 1024);
-    //     fileList.innerHTML = `\n          <div class="file-item">\n            <div class="file-meta">\n              <div>📑</div>\n              <div>\n                <div class="file-name">${escapeHtml(currentFile.name)}</div>\n                <div class="file-size">${kb} KB</div>\n              </div>\n            </div>\n            <div>
-    //           <button class="remove" id="removeBtn">Remove</button>
-    //         </div>
-    //       </div>\n        `;
-    //     document.getElementById('removeBtn').addEventListener('click', clearFile);
-    //   }
-
-    //   function escapeHtml(str){
-    //     return str.replace(/[&<>\"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-    //   }
-
-    //   function uploadFile(){
-    //     if(!currentFile) return;
-    //     const form = new FormData();
-    //     form.append('file', currentFile);
-
-    //     actionBtn.disabled = true;
-    //     actionBtn.textContent = 'Uploading...';
-
-    //     fetch('/upload', { method: 'POST', body: form })
-    //       .then(resp => {
-    //         if(!resp.ok) throw new Error('Upload failed: ' + resp.statusText);
-    //         return resp.json();
-    //       })
-    //       .then(result => {
-    //         alert('Upload successful');
-    //         console.log('server response', result);
-    //         clearFile();
-    //       })
-    //       .catch(err => {
-    //         console.error(err);
-    //         alert('Upload failed — see console');
-    //       })
-    //       .finally(() => {
-    //         actionBtn.disabled = false;
-    //         actionBtn.textContent = 'Choose & Upload';
-    //       });
-    //   }
-
-    //   // Drag & drop events
-    //   ['dragenter','dragover'].forEach(ev => {
-    //     dropzone.addEventListener(ev, e => {
-    //       e.preventDefault();
-    //       e.stopPropagation();
-    //       dropzone.classList.add('dragover');
-    //     });
-    //   });
-    //   ['dragleave','drop'].forEach(ev => {
-    //     dropzone.addEventListener(ev, e => {
-    //       e.preventDefault();
-    //       e.stopPropagation();
-    //       dropzone.classList.remove('dragover');
-    //     });
-    //   });
-
-    //   dropzone.addEventListener('drop', e => {
-    //     const dt = e.dataTransfer;
-    //     if(!dt || !dt.files || dt.files.length === 0) return;
-    //     setFile(dt.files[0]);
-    //   });
-
-    //   // Click anywhere on dropzone (except button) opens file picker
-    //   dropzone.addEventListener('click', e => {
-    //     if(e.target.id !== 'actionBtn'){
-    //       fileInput.click();
-    //     }
-    //   });
-
-    //   actionBtn.addEventListener('click', e => {
-    //     e.stopPropagation();
-    //     fileInput.click();
-    //   });
-
-    //   fileInput.addEventListener('change', e => {
-    //     const f = e.target.files && e.target.files[0];
-    //     if(!f) return;
-    //     setFile(f);
-    //     fileInput.value = '';
-    //   });
-
-    //   // Prevent browser from opening file when dropped outside
-    //   window.addEventListener('dragover', e => e.preventDefault());
-    //   window.addEventListener('drop', e => e.preventDefault());
-
-    // })();
-
 
 
 // Color Picker
@@ -332,45 +166,218 @@ let currentStep = 1;
       }
     });
 
-
-// PPTX file upload JS 
-
-  async function handleFile() {
-            const fileInput = document.getElementById("pptxFile");
-            if (!fileInput.files.length) {
-                alert("Please select a PPTX file");
-                return;
+      // Logo and Cover upload preview and info logic with validation (hide/show entire upload area)
+      document.addEventListener("DOMContentLoaded", function () {
+        // --- Logo Upload Logic ---
+        var logoInput = document.getElementById("logoInput");
+        var logoPreview = document.getElementById("logoPreview");
+        var logoPreviewContainer = document.querySelector(
+          ".logo-preview-container"
+        );
+        var logoUploadArea = logoInput
+          ? logoInput.closest(".logo-upload-area")
+          : null;
+        var addLogoContent = logoInput
+          ? logoInput.closest(".add-img-content")
+          : null;
+        var logoMeta = logoPreviewContainer
+          ? logoPreviewContainer.querySelector(".logo-meta")
+          : null;
+        var removeLogoBtn = document.getElementById("removeLogoBtn");
+        if (
+          logoInput &&
+          logoPreview &&
+          logoPreviewContainer &&
+          addLogoContent &&
+          logoMeta &&
+          removeLogoBtn &&
+          logoUploadArea
+        ) {
+          // Make the entire upload area clickable (except the input itself)
+          logoUploadArea.style.cursor = "pointer";
+          logoUploadArea.addEventListener("click", function (e) {
+            if (e.target !== logoInput) {
+              logoInput.click();
             }
-
-            const file = fileInput.files[0];
-            const arrayBuffer = await file.arrayBuffer();
-
-            // Load PPTX as zip
-            const zip = await JSZip.loadAsync(arrayBuffer);
-
-            let slideIndex = 1;
-            let tbody = document.querySelector("#slidesTable tbody");
-            tbody.innerHTML = "";
-
-            // Loop through slides
-            for (let filename in zip.files) {
-                if (filename.startsWith("ppt/slides/slide")) {
-                    let content = await zip.files[filename].async("string");
-
-                    // Extract all text inside <a:t> tags
-                    let matches = [...content.matchAll(/<a:t>(.*?)<\/a:t>/g)];
-
-                    // Take the first match (assuming it is the title) or "No Title" if no text found
-                    let title = matches.length > 0 ? matches[0][1].trim() : "No Title";
-
-                    let row = `<tr>
-            <td>Page ${slideIndex}</td>
-            <td>${title}</td>
-          </tr>`;
-                    tbody.innerHTML += row;
-                    slideIndex++;
-                }
+          });
+          logoInput.addEventListener("change", function () {
+            var file = logoInput.files[0];
+            if (!file) return;
+            // --- Validation for logo: max 512x512px, max 5MB ---
+            var fileSizeKB = file.size / 1024;
+            if (fileSizeKB < 1 || fileSizeKB > 5 * 1024) {
+              alert("Invalid file size! Allowed range: 1KB to 5MB.");
+              logoInput.value = "";
+              return;
             }
-
-            document.getElementById("slidesTable").style.display = "table";
+            var img = new Image();
+            img.onload = function () {
+              if (
+                this.width < 1 ||
+                this.height < 1 ||
+                this.width > 512 ||
+                this.height > 512
+              ) {
+                alert("Invalid dimensions! Allowed up to 512×512 px.");
+                logoInput.value = "";
+              } else {
+                // Hide entire upload area, show preview UI
+                logoUploadArea.style.display = "none";
+                logoPreviewContainer.style.display = "flex";
+                logoPreview.src = img.src;
+                var sizeKB = Math.round(file.size / 1024);
+                logoMeta.innerHTML =
+                  '<p style="color:#000000"> <strong>' +
+                  file.name +
+                  "</strong></p>" +
+                  "<p>misurare: " +
+                  sizeKB +
+                  " KB</p>" +
+                  "<p>Dimensione: " +
+                  img.width +
+                  "px x " +
+                  img.height +
+                  "px</p>";
+              }
+            };
+            img.src = URL.createObjectURL(file);
+          });
+          removeLogoBtn.addEventListener("click", function () {
+            // Reset UI
+            logoInput.value = "";
+            logoPreview.src = "";
+            logoPreviewContainer.style.display = "none";
+            logoUploadArea.style.display = "";
+          });
         }
+
+        // --- Cover Upload Logic ---
+        var coverInput = document.getElementById("coverInput");
+        var coverPreview = document.getElementById("coverPreview");
+        var coverPreviewContainer = document.querySelector(
+          ".cover-preview-container"
+        );
+        var coverUploadArea = coverInput
+          ? coverInput.closest(".cover-upload-area")
+          : null;
+        var addCoverContent = coverInput
+          ? coverInput.closest(".add-img-content")
+          : null;
+        var coverMeta = coverPreviewContainer
+          ? coverPreviewContainer.querySelector(".cover-meta")
+          : null;
+        var removeCoverBtn = document.getElementById("removeCoverBtn");
+        if (
+          coverInput &&
+          coverPreview &&
+          coverPreviewContainer &&
+          addCoverContent &&
+          coverMeta &&
+          removeCoverBtn &&
+          coverUploadArea
+        ) {
+          // Make the entire upload area clickable (except the input itself)
+          coverUploadArea.style.cursor = "pointer";
+          coverUploadArea.addEventListener("click", function (e) {
+            if (e.target !== coverInput) {
+              coverInput.click();
+            }
+          });
+          coverInput.addEventListener("change", function () {
+            var file = coverInput.files[0];
+            if (!file) return;
+            // --- Validation for cover: max 1024x800px, max 10MB ---
+            var fileSizeKB = file.size / 1024;
+            if (fileSizeKB < 1 || fileSizeKB > 10 * 1024) {
+              alert("Invalid file size! Allowed range: 1KB to 10MB.");
+              coverInput.value = "";
+              return;
+            }
+            var img = new Image();
+            img.onload = function () {
+              if (
+                this.width < 1 ||
+                this.height < 1 ||
+                this.width > 1024 ||
+                this.height > 800
+              ) {
+                alert("Invalid dimensions! Allowed up to 1024×800 px.");
+                coverInput.value = "";
+              } else {
+                // Hide entire upload area, show preview UI
+                coverUploadArea.style.display = "none";
+                coverPreviewContainer.style.display = "flex";
+                coverPreview.src = img.src;
+                var sizeKB = Math.round(file.size / 1024);
+                coverMeta.innerHTML =
+                  '<p style="color:#000000"> <strong>' +
+                  file.name +
+                  "</strong></p>" +
+                  "<p>misurare: " +
+                  sizeKB +
+                  " KB</p>" +
+                  "<p>Dimensione: " +
+                  img.width +
+                  "px x " +
+                  img.height +
+                  "px</p>";
+              }
+            };
+            img.src = URL.createObjectURL(file);
+          });
+          removeCoverBtn.addEventListener("click", function () {
+            // Reset UI
+            coverInput.value = "";
+            coverPreview.src = "";
+            coverPreviewContainer.style.display = "none";
+            coverUploadArea.style.display = "";
+          });
+        }
+      });
+
+      // Make .pptx-uploaded and #actionBtn clickable to open the hidden file input (only one event listener)
+      document.addEventListener("DOMContentLoaded", function () {
+        var uploadArea = document.querySelector(".pptx-uploaded");
+        var fileInput = document.getElementById("pptxFile");
+        var actionBtn = document.getElementById("actionBtn");
+        if (uploadArea && fileInput) {
+          uploadArea.style.cursor = "pointer";
+          uploadArea.addEventListener("click", function (e) {
+            if (e.target.id !== "actionBtn") {
+              fileInput.click();
+            }
+          });
+        }
+        if (actionBtn && fileInput) {
+          actionBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            fileInput.click();
+          });
+        }
+        // Auto-upload when file selected
+        if (fileInput) {
+          fileInput.addEventListener("change", function () {
+            if (fileInput.files.length) {
+              var file = fileInput.files[0];
+              var ext = file.name.split(".").pop().toLowerCase();
+              if (ext !== "xlsx" && ext !== "png") {
+                alert("Formato non supportato! Seleziona un file XLSX o PNG.");
+                fileInput.value = "";
+                return;
+              }
+              // Optional: Add size validation if needed
+              // XLSX: max 10MB, PNG: max 5MB
+              var maxSize = ext === "xlsx" ? 10 * 1024 * 1024 : 5 * 1024 * 1024;
+              if (file.size > maxSize) {
+                alert(
+                  "File troppo grande! Limite: " +
+                    (ext === "xlsx" ? "10MB" : "5MB")
+                );
+                fileInput.value = "";
+                return;
+              }
+              if (typeof handleFile === "function") handleFile();
+            }
+          });
+        }
+      });
